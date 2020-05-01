@@ -10,26 +10,17 @@ services:
     volumes:
       - app:/app
 
-  php:
-    image: srijanlabs/php-fpm:7.3-1.x-dev
+  drupal:
+    image: srijanlabs/php-fpm-apache:7.3-1.x-dev
     depends_on:
       - cli
     ports:
       - 9000:9000
-    volumes:
-      - app:/app
-
-  apache:
-    image: srijanlabs/apache:1.x
-    working_dir: /app
-    ports:
       - 8080:8080
     volumes:
       - ./apache/vhost/app.conf:/etc/apache2/sites-enabled/000-default.conf 
       - app:/app
-    depends_on:
-      - php
-
+  
   db:
     image: mysql:5.6
     ports:
