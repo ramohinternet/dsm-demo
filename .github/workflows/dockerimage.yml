@@ -1,0 +1,21 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: |
+        docker login -u ${{ secrets.DOCKER_USER }} --password ${{ secrets.DOCKER_TOKEN }}
+        tag=$(date +%s)
+        docker build . --file Dockerfile --tag srijanlabs/continua-demo:$tag
+        docker tag srijanlabs/continua-demo:$tag srijanlabs/continua-demo:latest
+        docker push wsmathias9/node-dev:$tag
+        docker push wsmathias9/node-dev:latest
