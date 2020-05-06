@@ -19,8 +19,8 @@ jobs:
         docker build . --file Dockerfile --tag $image_repo:latest
     - name: Push image to the Registry
       run: |
-        commitid=$(GITHUB_SHA:0:7)
-        prefix=$(GITHUB_REF#"refs/heads/")
+        commitid=${GITHUB_SHA:0:7}
+        prefix=${GITHUB_REF#"refs/heads/"}
         tag=$prefix-$commitid
         docker tag srijanlabs/continua-demo:latest $image_repo:$tag
         docker push $image_repo:$tag
