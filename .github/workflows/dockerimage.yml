@@ -9,19 +9,20 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    env:
+      image_repo: srijanlabs/continua-demo 
     steps:
     - uses: actions/checkout@v2
     - name: Login to Docker Registry
       run: echo ${{ secrets.DOCKER_TOKEN }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin
     - name: Build the Docker image
       run: |
-        image_repo=srijanlabs/continua-demo
         docker build . --file Dockerfile --tag $image_repo:latest
     - name: Push image to the Registry
       run: |
         commitid=${GITHUB_SHA:0:7}
         prefix=${GITHUB_REF#"refs/heads/"}
         tag=$prefix-$commitid
-        docker tag srijanlabs/continua-demo:latest $image_repo:$tag
+        docker tag $image_repo:latest $image_repo:$tag
         docker push $image_repo:$tag
         docker push $image_repo:latest
