@@ -10,7 +10,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      image_repo: srijanlabs/continua-demo 
+      image_repo: ${{ secrets.DOCKER_REPO }}
     steps:
     - uses: actions/checkout@v2
     - name: Login to Docker Registry
