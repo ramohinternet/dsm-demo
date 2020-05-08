@@ -266,7 +266,7 @@ $databases = [];
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = '';
+$settings['hash_salt'] = 'f4yzlAhtzmijz9SK6DeDgb-cFmwuWE1TPM8Ia16e1eAfC-RMUTjBIpzIyElSGN9wdKyzFZw3IQ';
 
 /**
  * Deployment identifier.
@@ -755,3 +755,49 @@ $settings['entity_update_backup'] = TRUE;
 # if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
 #   include $app_root . '/' . $site_path . '/settings.local.php';
 # }
+// $settings['s3fs.use_s3_for_public'] = TRUE;
+// $settings['s3fs.use_s3_for_private'] = TRUE;
+// $settings['s3fs.access_key'] = getenv('S3_ACCESS');
+// $settings['s3fs.secret_key'] = getenv('S3_SECRET');
+
+// $config['s3fs.settings']['bucket'] = getenv('S3_BUCKET');
+// $config['s3fs.settings']['region'] = getenv('S3_REGION');
+
+// $settings['file_private_path'] = 'sites/default/files/private';
+
+$db_master = [
+  'database' => getenv('db1'),
+  'username' => getenv('username'),
+  'password' => getenv('password'),
+  'prefix' => '',
+  'host' => getenv('host'),
+  'port' => getenv('port'),
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+  'driver' => 'mysql',
+];
+$databases['default']['default'] = $db_master;
+
+function getenv_file($arg) {
+ $env_dump = file_get_contents('/app/.env'); // Change this to something more dynamic
+ //preg_match_all("/([^,= ]+)=([^,= ]+)/", $env_dump, $r);
+ //$env = array_combine($r[1], $r[2]);
+ $env = array();
+ parse_str(str_replace("\n", "&", $env_dump), $env);
+ // \drupal::logger('test_logger')->log(print_r($env,1));
+ return $env[$arg];
+}
+
+/*
+$databases['default']['default'] = array (
+  'database' => 'vega',
+  'username' => 'vega',
+  'password' => 'vega',
+  'prefix' => '',
+  'host' => 'db',
+  'port' => '3306',
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+  'driver' => 'mysql',
+);
+*/
+$settings['config_sync_directory'] = '../config/sync';
+
