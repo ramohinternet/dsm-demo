@@ -13,8 +13,9 @@ Pros:
 - image transportation cost will reduce 
 -- previously  (base + php-fpm) + drupal code and (base + apache) + drupal code
 -- new    base + (php-fpm + apache ) + drupal code
-- since only drupal code layer channges during every build will have to push and pull only that layer
+- since only drupal code layer changes during every build will have to push and pull only that layer
 
 con
 - we need specify user now. (if we able to run apache with non-root user we can eliminate this)
 - add command separatly to each container spec in the pod (should not be a problem)
+
