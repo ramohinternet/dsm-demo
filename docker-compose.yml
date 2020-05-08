@@ -11,7 +11,7 @@ services:
       - app:/app
 
   drupal:
-    image: srijanlabs/php-fpm-apache:7.3-1.x-dev
+    image: srijanlabs/php-fpm-apache:7.3-1.x
     depends_on:
       - cli
     ports:
