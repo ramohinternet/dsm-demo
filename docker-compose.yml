@@ -15,8 +15,8 @@ services:
     depends_on:
       - cli
     ports:
-      - 9000:9000
-      - 8080:8080
+      # - 9000:9000
+      # - 8080:8080
     volumes:
       - ./apache/vhost/app.conf:/etc/apache2/sites-enabled/000-default.conf 
       - app:/app
@@ -24,7 +24,7 @@ services:
   db:
     image: mysql:5.6
     ports:
-      - "3306:3306"
+      # - "3306:3306"
     volumes:
       - data:/var/lib/mysql
     environment:
