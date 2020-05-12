@@ -25,4 +25,4 @@ jobs:
         tag=$prefix-$commitid
         docker tag $image_repo:latest $image_repo:$tag
         docker push $image_repo:$tag
-        docker push $image_repo:latest
+        # docker push $image_repo:latest

@@ -15,7 +15,8 @@ Pros:
 -- new    base + (php-fpm + apache ) + drupal code
 - since only drupal code layer changes during every build will have to push and pull only that layer
 
-con
+Cons:-
 - we need specify user now. (if we able to run apache with non-root user we can eliminate this)
 - add command separatly to each container spec in the pod (should not be a problem)
+
 

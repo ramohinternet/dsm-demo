@@ -14,17 +14,20 @@ services:
     image: srijanlabs/php-fpm-apache:7.3-1.x
     depends_on:
       - cli
+    command: ["start.sh"]
     ports:
-      # - 9000:9000
-      - 8082:8080
+      - 9000:9000
+      - 8080:8080
     volumes:
       - ./apache/vhost/app.conf:/etc/apache2/sites-enabled/000-default.conf 
       - app:/app
+    env_file: 
+      - .db-env
   
   db:
     image: mysql:5.6
-    # ports:
-    #   # - "3306:3306"
+    ports:
+      - "3306:3306"
     volumes:
       - data:/var/lib/mysql
     environment:
