@@ -766,12 +766,12 @@ $settings['entity_update_backup'] = TRUE;
 // $settings['file_private_path'] = 'sites/default/files/private';
 
 $db_master = [
-  'database' => getenv('db1'),
-  'username' => getenv('username'),
-  'password' => getenv('password'),
+  'database' => getenv('DB_NAME'),
+  'username' => getenv('DB_USER'),
+  'password' => getenv('DB_PASSWORD'),
   'prefix' => '',
-  'host' => getenv('host'),
-  'port' => getenv('port'),
+  'host' => getenv('DB_HOST'),
+  'port' => getenv('DB_PORT'),
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
 ];
